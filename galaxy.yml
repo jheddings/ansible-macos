@@ -1,6 +1,6 @@
 ---
-namespace: jheddings
-name: macos
+namespace: "jheddings"
+name: "macos"
 version: "1.0.0"
 readme: README.md
 description: A collection of utilities for working with macos.
@@ -19,6 +19,14 @@ tags:
 dependencies: {}
 
 build_ignore:
+  - .git
+  - .gitignore
+  - .github
+  - .venv
+  - .flake8
+  - .pre*
+  - build
+  - tests
   - poetry.lock
-  - pyproject.yaml
+  - pyproject.toml
   - Makefile

@@ -2,10 +2,14 @@
 
 BASEDIR ?= $(PWD)
 SRCDIR ?= $(BASEDIR)/src
-BUILD_DIR ?= $(BASEDIR)/build
 
+APPNS ?= $(shell grep -m1 '^namespace:' "$(BASEDIR)/galaxy.yml" | sed -e 's/name.*"\(.*\)"/\1/')
 APPNAME ?= $(shell grep -m1 '^name:' "$(BASEDIR)/galaxy.yml" | sed -e 's/name.*"\(.*\)"/\1/')
 APPVER ?= $(shell grep -m1 '^version:' "$(BASEDIR)/galaxy.yml" | sed -e 's/version.*"\(.*\)"/\1/')
+
+BUILD_DIR ?= $(BASEDIR)/build
+BUILD_TGZ ?= $(APPNS)-$(APPNAME)-$(APPVER).tar.gz
+BUILD_FILE ?= $(BUILD_DIR)/$(BUILD_TGZ)
 
 WITH_VENV := poetry run
 
@@ -34,8 +38,9 @@ preflight: static-checks
 
 
 .PHONY: build
-build: venv
-	$(WITH_VENV) ansible-galaxy collection build "$(BASEDIR)" --output-path "$(BUILD_DIR)"
+build: venv preflight
+	$(WITH_VENV) ansible-galaxy collection build "$(BASEDIR)" \
+		--output-path "$(BUILD_DIR)"
 
 
 .PHONY: github-reltag
@@ -45,12 +50,14 @@ github-reltag: preflight
 
 
 .PHONY: publish
-publish: build
-	$(WITH_VENV) ansible-galaxy collection publish "$(BASEDIR)"
+publish: venv preflight build
+	$(WITH_VENV) ansible-galaxy collection publish \
+		--token "${ANSIBLE_GALAXY_TOKEN}" "$(BUILD_FILE)"
 
 
 .PHONY: release
-release: publish github-reltag
+release: preflight publish github-reltag
+	echo "Released $(APPNAME)-$(APPVER)"
 
 
 .PHONY: clean
