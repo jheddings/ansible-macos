@@ -1,7 +1,8 @@
-# Makefile for github tools
+# Makefile for ansible-macos
 
 BASEDIR ?= $(PWD)
 SRCDIR ?= $(BASEDIR)/src
+BUILD_DIR ?= $(BASEDIR)/build
 
 APPNAME ?= $(shell grep -m1 '^name:' "$(BASEDIR)/galaxy.yml" | sed -e 's/name.*"\(.*\)"/\1/')
 APPVER ?= $(shell grep -m1 '^version:' "$(BASEDIR)/galaxy.yml" | sed -e 's/version.*"\(.*\)"/\1/')
@@ -33,7 +34,8 @@ preflight: static-checks
 
 
 .PHONY: build
-build: venv preflight
+build: venv
+	$(WITH_VENV) ansible-galaxy collection build "$(BASEDIR)" --output-path "$(BUILD_DIR)"
 
 
 .PHONY: github-reltag
@@ -44,6 +46,7 @@ github-reltag: preflight
 
 .PHONY: publish
 publish: build
+	$(WITH_VENV) ansible-galaxy collection publish "$(BASEDIR)"
 
 
 .PHONY: release
@@ -52,6 +55,7 @@ release: publish github-reltag
 
 .PHONY: clean
 clean:
+	rm -Rf "$(BUILD_DIR)"
 	find "$(BASEDIR)" -name "*.pyc" -print | xargs rm -f
 	find "$(BASEDIR)" -name '__pycache__' -print | xargs rm -Rf
 
