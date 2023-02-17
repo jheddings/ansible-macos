@@ -54,11 +54,10 @@ class PowerSettings:
             elif current_section is None:
                 continue
 
-            else:
-                (name, value) = line.rsplit(maxsplit=1)
-                name = name.strip()
-                value = value.strip()
-                self.props[current_section][name] = value
+            (name, value) = line.rsplit(maxsplit=1)
+            name = name.strip()
+            value = value.strip()
+            self.props[current_section][name] = value
 
 
 def run(module):

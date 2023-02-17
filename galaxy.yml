@@ -16,7 +16,8 @@ authors:
 
 license_file: LICENSE
 
-tags: []
+tags:
+  - tools
 
 dependencies: {}
 
