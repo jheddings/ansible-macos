@@ -5,10 +5,15 @@ description = "Ansible collection for working with macOS."
 authors = ["jheddings <jheddings@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "plugins/modules"}]
+repository = "https://github.com/jheddings/ansible-macos"
 
 [tool.poetry.dependencies]
 python = "^3.9"
 ansible = "^7.2.0"
+
+[tool.black]
+line-length = 88
 
 [build-system]
 requires = ["poetry-core"]

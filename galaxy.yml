@@ -1,15 +1,12 @@
 ---
 namespace: jheddings
 name: macos
-version: 1.0.0
+version: "1.0.0"
 readme: README.md
 description: A collection of utilities for working with macos.
 
-# The URL of the originating SCM repository
-repository: http://example.com/repository
-documentation: http://docs.example.com
-homepage: http://example.com
-issues: http://example.com/issue/tracker
+repository: https://github.com/jheddings/ansible-macos
+issues: https://github.com/jheddings/ansible-macos/issues
 
 authors:
   - jheddings <jheddings@gmail.com>
