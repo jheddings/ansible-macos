@@ -31,6 +31,6 @@ repos:
           - flake8-return
 
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: "v6.14.5"
+    rev: "v6.14.6"
     hooks:
       - id: ansible-lint
