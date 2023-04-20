@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ansible-macos"
-version = "1.0.0"
+version = "1.1.0"
 description = "Ansible collection for working with macOS."
 authors = ["jheddings <jheddings@gmail.com>"]
 license = "MIT"
@@ -12,8 +12,15 @@ repository = "https://github.com/jheddings/ansible-macos"
 python = "^3.9"
 ansible = "^7.2.0"
 
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+
 [tool.black]
-line-length = 88
+line_length = 88
+
+[tool.isort]
+profile = "black"
 
 [build-system]
 requires = ["poetry-core"]
