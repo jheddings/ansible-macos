@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ansible-macos"
-version = "1.1.0"
+version = "1.1.2"
 description = "Ansible collection for working with macOS."
 authors = ["jheddings <jheddings@gmail.com>"]
 license = "MIT"
