@@ -6,31 +6,34 @@ from ansible.module_utils.basic import AnsibleModule
 
 
 class OnePasswordCLI:
-    def __init__(self, module: AnsibleModule, account=None, vault=None, dry_run=False):
+    def __init__(self, module: AnsibleModule, account=None, vault=None):
         self.module = module
-        self.dry_run = dry_run
 
         self.vault = vault
         self.account = account
 
-    def cli(self, *args):
+    def build_command(self, *args):
         cmd = ["op", "item"]
 
         if self.account is not None:
-            cmd += ("--account", self.account)
+            cmd += ["--account", self.account]
 
         if self.vault is not None:
-            cmd += ("--vault", self.vault)
+            cmd += ["--vault", self.vault]
 
         cmd.extend(args)
 
         return cmd
 
-    def set(self, name, field, value):
-        cmd = self.cli("edit", name, f"{field}={value}")
+    def op(self, *args):
+        cmd = self.build_command(*args)
 
-        if not self.dry_run:
-            self.module.run_command(cmd, check_rc=True)
+        _, out, _ = self.module.run_command(cmd, check_rc=True)
+
+        return out
+
+    def set(self, name, field, value):
+        self.op("edit", name, f"{field}={value}")
 
     def parse_field_data(self, data):
         parsed = {
@@ -42,8 +45,8 @@ class OnePasswordCLI:
         return parsed
 
     def info(self, name):
-        cmd = self.cli("get", name, "--format=json")
-        rc, out, err = self.module.run_command(cmd)
+        cmd = self.build_command("get", name, "--format=json")
+        rc, out, _ = self.module.run_command(cmd, check_rc=False)
 
         if rc == 0:
             info = json.loads(out)
@@ -51,7 +54,8 @@ class OnePasswordCLI:
             return {
                 "changed": False,
                 "msg": name,
-                "item": info["title"],
+                "id": info["id"],
+                "title": info["title"],
                 "vault": info["vault"]["name"],
                 "data": {
                     field["id"]: field.get("value", None) for field in info["fields"]
@@ -72,21 +76,23 @@ class OnePasswordCLI:
         info = self.info(name)
         current_values = info.get("data", None)
 
+        if current_values is None:
+            self.op("create", "--title", name, "--category", "login")
+            current_values = {}
+
         changed = False
 
         # for each target field, determine appropriate action
         for field, target_value in fields.items():
             needs_update = False
 
-            if current_values is None:
-                current_values = {}
+            if field not in current_values:
                 needs_update = True
 
-            elif field not in current_values:
-                needs_update = True
-
-            elif replace:
-                if current_values[field] != target_value:
+            elif current_values[field] != target_value:
+                if replace:
+                    needs_update = True
+                elif current_values[field] is None:
                     needs_update = True
 
             if needs_update:
@@ -97,7 +103,8 @@ class OnePasswordCLI:
         return {
             "changed": changed,
             "msg": name,
-            "item": info["item"],
+            "id": info["id"],
+            "title": info["title"],
             "vault": info["vault"],
             "data": current_values,
         }
@@ -149,7 +156,7 @@ def main():
 
     module = AnsibleModule(
         argument_spec=arg_spec,
-        supports_check_mode=True,
+        supports_check_mode=False,
         required_if=[
             ("state", "update", ["fields"]),
             ("state", "present", ["fields"]),
