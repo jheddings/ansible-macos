@@ -2,37 +2,38 @@
 
 [[package]]
 name = "ansible"
-version = "7.7.0"
+version = "8.1.0"
 description = "Radically simple IT automation"
 category = "main"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "ansible-7.7.0-py3-none-any.whl", hash = "sha256:4f8d346db1b6cec0f30b77935b3dce5633d76881186da839b58b34b48a089b92"},
-    {file = "ansible-7.7.0.tar.gz", hash = "sha256:9c206ba515f13a0cc9c919d496218ba26df581755bdc39be85b074066c699a02"},
+    {file = "ansible-8.1.0-py3-none-any.whl", hash = "sha256:3bcfb06f2d65edc1c4876df33a52d4469d48d4fe534f1d8ffa196f1b0d81ab0e"},
+    {file = "ansible-8.1.0.tar.gz", hash = "sha256:91f20b5bfcf5f298533c174a93881e00bc9e6b41411464f44c054a38d716a56a"},
 ]
 
 [package.dependencies]
-ansible-core = ">=2.14.7,<2.15.0"
+ansible-core = ">=2.15.1,<2.16.0"
 
 [[package]]
 name = "ansible-core"
-version = "2.14.7"
+version = "2.15.1"
 description = "Radically simple IT automation"
 category = "main"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "ansible-core-2.14.7.tar.gz", hash = "sha256:2be26d617483b2b1621ec93ca57f2e24faace90cb9f07d8dca3f68a8428d9cd6"},
-    {file = "ansible_core-2.14.7-py3-none-any.whl", hash = "sha256:a909b8cbdd8652796aa3e161d60d65bb18f210bdde27664f3e489e239950ad85"},
+    {file = "ansible-core-2.15.1.tar.gz", hash = "sha256:ed28eb4943e480004edc9ba1e9bee979a0650cb2f9372ce4a2bd572838c60d2b"},
+    {file = "ansible_core-2.15.1-py3-none-any.whl", hash = "sha256:2926b1dc96ef69272195c91a1fedfe30b9aacd674cb04628b26626ecb0c8524a"},
 ]
 
 [package.dependencies]
 cryptography = "*"
+importlib-resources = {version = ">=5.0,<5.1", markers = "python_version < \"3.10\""}
 jinja2 = ">=3.0.0"
 packaging = "*"
 PyYAML = ">=5.1"
-resolvelib = ">=0.5.3,<0.9.0"
+resolvelib = ">=0.5.3,<1.1.0"
 
 [[package]]
 name = "black"
@@ -229,6 +230,22 @@ sdist = ["build"]
 ssh = ["bcrypt (>=3.1.5)"]
 test = ["pretend", "pytest (>=6.2.0)", "pytest-benchmark", "pytest-cov", "pytest-xdist"]
 test-randomorder = ["pytest-randomly"]
+
+[[package]]
+name = "importlib-resources"
+version = "5.0.7"
+description = "Read resources from Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "importlib_resources-5.0.7-py3-none-any.whl", hash = "sha256:2238159eb743bd85304a16e0536048b3e991c531d1cd51c4a834d1ccf2829057"},
+    {file = "importlib_resources-5.0.7.tar.gz", hash = "sha256:4df460394562b4581bb4e4087ad9447bd433148fba44241754ec3152499f1d1b"},
+]
+
+[package.extras]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["pytest (>=3.5,!=3.7.3)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=1.2.3)", "pytest-cov", "pytest-enabler", "pytest-flake8", "pytest-mypy"]
 
 [[package]]
 name = "isort"
@@ -485,4 +502,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "a9f78a783996ac8cb548f3dc8e91ee22ac3111f9c80a4a6faad4a7ce94ef1e62"
+content-hash = "57822a6d42837142cc1b02d3283184b30361a691bf74c452a2c404f7f1b0a124"
