@@ -10,7 +10,7 @@ repository = "https://github.com/jheddings/ansible-macos"
 
 [tool.poetry.dependencies]
 python = "^3.11.5"
-ansible = "^8.3.0"
+ansible = "^8.4.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
