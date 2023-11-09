@@ -2,14 +2,14 @@
 
 [[package]]
 name = "ansible"
-version = "8.6.0"
+version = "8.6.1"
 description = "Radically simple IT automation"
 category = "main"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "ansible-8.6.0-py3-none-any.whl", hash = "sha256:6adf5a8f3f13127c2a1e3554d484aac169c41427507f73f9b6340864cada37ea"},
-    {file = "ansible-8.6.0.tar.gz", hash = "sha256:95f4e593274d59d53f36f62207535b7d272adc2701ac7a0ed7af6a6d81637a60"},
+    {file = "ansible-8.6.1-py3-none-any.whl", hash = "sha256:222735c32d2d2749f207e55ef740638bb97c7aaaa8b63bb7c7592d447da47584"},
+    {file = "ansible-8.6.1.tar.gz", hash = "sha256:18b397580c1f05ce5de1fe238508dd81218d278667956d2f7709320176c3ed4a"},
 ]
 
 [package.dependencies]
@@ -476,4 +476,4 @@ test = ["commentjson", "packaging", "pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12.0"
-content-hash = "d7620f7c1543d4ac849ab1f61f8c291f698e17d6336195d9529360349a444366"
+content-hash = "449a108fde2df18b00172dbb03e8ba3e059f13cc1ebc6a2ac6bc9b5675223a2d"
