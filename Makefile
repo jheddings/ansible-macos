@@ -1,5 +1,7 @@
 # Makefile for ansible-macos
 
+-include local.env
+
 BASEDIR ?= $(PWD)
 SRCDIR ?= $(BASEDIR)/src
 
@@ -12,6 +14,8 @@ BUILD_TGZ ?= $(APPNS)-$(APPNAME)-$(APPVER).tar.gz
 BUILD_FILE ?= $(BUILD_DIR)/$(BUILD_TGZ)
 
 WITH_VENV := poetry run
+
+export
 
 
 .PHONY: all
