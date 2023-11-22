@@ -16,11 +16,33 @@ ansible = "^9.0.0"
 black = "^23.11.0"
 isort = "^5.12.0"
 
-[tool.black]
-line_length = 88
+[tool.ruff]
+line-length = 88
+indent-width = 4
 
-[tool.isort]
-profile = "black"
+[tool.ruff.lint]
+select = [
+    "I",   # isort
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "C",   # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "G",   # flake8-logging-format
+    "RET", # flake8-return
+    "N",   # pep8-naming
+    "ERA", # eradicate
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501", # line-too-long
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
 
 [build-system]
 requires = ["poetry-core"]
