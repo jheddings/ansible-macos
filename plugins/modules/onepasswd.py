@@ -36,13 +36,11 @@ class OnePasswordCLI:
         self.op("edit", name, f"{field}={value}")
 
     def parse_field_data(self, data):
-        parsed = {
+        return {
             "label": data["label"],
             "reference": data.get("reference", None),
             "value": data.get("value", None),
         }
-
-        return parsed
 
     def info(self, name):
         cmd = self.build_command("get", name, "--format=json")
