@@ -1,1 +1,15 @@
+*.swp
+*.swo
+*~
+.DS_Store
+
+__pycache__
+*.py[cod]
+
+.ruff_cache
+
+.venv
+local.env
+
 build
+tmp
