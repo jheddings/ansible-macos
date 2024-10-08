@@ -13,7 +13,7 @@ python = "^3.10"
 ansible = "^10.4.0"
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^4.0.0"
+pre-commit = "^4.0.1"
 ruff = "^0.6.9"
 
 [tool.ruff]
