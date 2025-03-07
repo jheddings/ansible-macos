@@ -9,7 +9,7 @@ packages = [{include = "plugins/modules"}]
 repository = "https://github.com/jheddings/ansible-macos"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.13.2"
 ansible = "^10.7.0"
 
 [tool.poetry.group.dev.dependencies]
