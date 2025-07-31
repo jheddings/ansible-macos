@@ -24,12 +24,12 @@ all: venv preflight
 
 .PHONY: venv
 venv:
-	poetry install --sync
+	poetry sync
 	$(WITH_VENV) pre-commit install --install-hooks --overwrite
 
 
 poetry.lock: venv
-	poetry lock --no-update
+	poetry lock
 
 
 .PHONY: static-checks
