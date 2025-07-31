@@ -13,3 +13,5 @@ local.env
 
 build
 tmp
+
+.ansible
