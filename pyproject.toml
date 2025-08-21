@@ -14,7 +14,7 @@ ansible = "^11.9.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.3.0"
-ruff = "^0.12.9"
+ruff = "^0.12.10"
 
 [tool.ruff]
 line-length = 88
