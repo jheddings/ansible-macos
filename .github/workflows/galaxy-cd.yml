@@ -27,4 +27,4 @@ jobs:
       - name: Publish to Galaxy
         run: |
           poetry run ansible-galaxy collection publish \
-          --token "${{ secrets.ANSIBLE_GALAXY_TOKEN }}" ./build/*.tar.gz
+            --token "${{ secrets.ANSIBLE_GALAXY_TOKEN }}" ./build/*.tar.gz
