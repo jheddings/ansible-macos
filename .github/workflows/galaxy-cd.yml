@@ -20,11 +20,11 @@ jobs:
         uses: snok/install-poetry@v1.4.1
       - name: Setup virtual environment
         run: |
-		  poetry install --with dev --no-interaction
+          poetry install --with dev --no-interaction
       - name: Build collection
         run: |
-		  poetry run ansible-galaxy collection build --output-path ./build
+          poetry run ansible-galaxy collection build --output-path ./build
       - name: Publish to Galaxy
         run: |
           poetry run ansible-galaxy collection publish \
-          --token "${{ secrets.ANSIBLE_GALAXY_TOKEN }}" ./build/*.tar.gz
+            --token "${{ secrets.ANSIBLE_GALAXY_TOKEN }}" ./build/*.tar.gz

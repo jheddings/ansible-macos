@@ -47,21 +47,10 @@ build: venv preflight
 		--output-path "$(BUILD_DIR)"
 
 
-.PHONY: github-reltag
-github-reltag: preflight
+.PHONY: release
+release: preflight build
 	git tag "v$(APPVER)" main
 	git push origin "v$(APPVER)"
-
-
-.PHONY: publish
-publish: venv preflight build
-	$(WITH_VENV) ansible-galaxy collection publish \
-		--token "${ANSIBLE_GALAXY_TOKEN}" "$(BUILD_FILE)"
-
-
-.PHONY: release
-release: preflight publish github-reltag
-	echo "Released $(APPNAME)-$(APPVER)"
 
 
 .PHONY: clean
