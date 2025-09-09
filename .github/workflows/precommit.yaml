@@ -1,5 +1,6 @@
+# Run pre-commit checks
 ---
-name: Preflight Checks
+name: Pre-commit Checks
 
 "on":
   push:
@@ -8,9 +9,9 @@ name: Preflight Checks
     branches: [main]
 
 jobs:
-  static_checks:
+  precommit_check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v6.0.0
       - uses: pre-commit/action@v3.0.1
