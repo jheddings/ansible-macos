@@ -1,20 +1,31 @@
-[tool.poetry]
+[project]
 name = "ansible-macos"
 version = "0.0.0"
 description = "Ansible collection for working with macOS."
-authors = ["jheddings <jheddings@gmail.com>"]
-license = "MIT"
+authors = [{ name = "jheddings", email = "jheddings@gmail.com" }]
+requires-python = ">=3.12,<4"
 readme = "README.md"
-packages = [{include = "plugins/modules"}]
-repository = "https://github.com/jheddings/ansible-macos"
+license = "MIT"
+dependencies = ["ansible>=12.0.0,<13"]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-ansible = "^12.0.0"
+[project.urls]
+Repository = "https://github.com/jheddings/ansible-macos"
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^4.3.0"
-ruff = "^0.13.0"
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0,<5",
+    "ruff>=0.13.0,<0.14",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["plugins/modules"]
+
+[tool.hatch.build.targets.wheel]
+include = ["plugins/modules"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 88
@@ -43,7 +54,3 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
