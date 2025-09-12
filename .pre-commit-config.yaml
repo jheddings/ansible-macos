@@ -13,7 +13,7 @@ repos:
     rev: v0.12.7
     hooks:
       - id: ruff-format
-      - id: ruff
+      - id: ruff-check
         args: ["--fix"]
 
   - repo: https://github.com/ansible/ansible-lint.git

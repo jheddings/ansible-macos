@@ -19,17 +19,17 @@ export
 
 
 .PHONY: all
-all: venv preflight
+all: venv build preflight
 
 
 .PHONY: venv
 venv:
-	poetry sync
+	uv sync --all-extras
 	$(WITH_VENV) pre-commit install --install-hooks --overwrite
 
 
-poetry.lock: venv
-	poetry lock
+uv.lock: venv
+	uv lock
 
 
 .PHONY: static-checks
@@ -63,4 +63,4 @@ clean:
 .PHONY: clobber
 clobber: clean
 	$(WITH_VENV) pre-commit uninstall
-	poetry env remove --all
+	rm -Rf "$(BASEDIR)/.venv"
