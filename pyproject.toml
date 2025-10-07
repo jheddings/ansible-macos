@@ -3,7 +3,7 @@ name = "ansible-macos"
 version = "0.0.0"
 description = "Ansible collection for working with macOS."
 authors = [{ name = "jheddings", email = "jheddings@gmail.com" }]
-requires-python = ">=3.12,<4"
+requires-python = ">=3.14.0,<4"
 readme = "README.md"
 license = "MIT"
 dependencies = ["ansible>=12.0.0,<13"]
