@@ -14,7 +14,7 @@ Repository = "https://github.com/jheddings/ansible-macos"
 [dependency-groups]
 dev = [
     "pre-commit>=4.3.0,<5",
-    "ruff>=0.14.0,<0.15",
+    "ruff>=0.14.1,<0.15",
 ]
 
 [tool.hatch.build.targets.sdist]
