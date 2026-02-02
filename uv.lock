@@ -45,7 +45,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "ansible", specifier = ">=13.2.0,<14" }]
+requires-dist = [{ name = "ansible", specifier = ">=13.3.0,<14" }]
 
 [package.metadata.requires-dev]
 dev = [
